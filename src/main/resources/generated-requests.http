@@ -1,0 +1,25 @@
+###
+GET http://localhost:8080/api/recipe/1
+
+###
+GET http://localhost:8080/api/recipe/search?category=test+category
+
+###
+GET http://localhost:8080/api/recipe/search?name=Test
+
+###
+POST http://localhost:8080/api/recipe/new
+Content-Type: application/json
+
+{
+  "name": "test name",
+  "description": "Test Description",
+  "category": "Test Category",
+  "date": "2020-01-02T12:11:25.034734",
+  "ingredients": ["Step 1"],
+  "directions": ["Step 1", "Step 2", "Step 3"]
+}
+
+
+###
+DELETE http://localhost:8080/api/recipe/1
