@@ -117,3 +117,14 @@ statements, manual testing, and desk violence later I found out the user part of
 null during the update. I used some MapStruct magic so that all null values are ignored when updating. There is still
 a bunch of JPA and security stuff to learn, but I think I got the basics down.
 
+=========================================================================
+
+# Post Project Changelog
+
+Since there won't be any major upkeep or changes I will just make a changelog here, instead of a separate file.
+Also, the completed project will be considered version 1.0.0.
+
+## [1.1.0]
+
+### Added
+- Switched from H2 to MySQL database.
