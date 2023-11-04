@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 
@@ -14,9 +12,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class RecipeModel {
 
     @Id
@@ -35,17 +35,19 @@ public class RecipeModel {
     @UpdateTimestamp
     private LocalDateTime date;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "recipe_id")
+
     @NotNull(message = "Recipe ingredients are mandatory")
     @Size(min = 1, message = "At least one ingredient is required")
     @ElementCollection
     private List<String> ingredients;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "recipe_id")
+
     @NotNull(message = "Recipe directions are mandatory")
     @Size(min = 1, message = "At least one direction is required")
     @ElementCollection
     private List<String> directions;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "username")
+    private UserModel userModel;
 }
