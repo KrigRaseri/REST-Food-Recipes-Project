@@ -124,7 +124,16 @@ a bunch of JPA and security stuff to learn, but I think I got the basics down.
 Since there won't be any major upkeep or changes I will just make a changelog here, instead of a separate file.
 Also, the completed project will be considered version 1.0.0.
 
+## [Unreleased]
+
+## [1.1.1]
+
+### Added Java doc comments to all classes.
+
+### Changed a few things in RecipeController and GlobalExceptionHandler.
+
+
 ## [1.1.0]
 
 ### Added
-- Switched from H2 to MySQL database.
+- Switched from H2 to Postgres database.
