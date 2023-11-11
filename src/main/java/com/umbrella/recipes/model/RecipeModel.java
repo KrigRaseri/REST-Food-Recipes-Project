@@ -11,6 +11,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Represents a recipe entity with various attributes including name, description, category,
+ * creation date, ingredients, directions, and the user who created the recipe. Yes I know I don't have to add model
+ * to the end of the class name but it just kinda happened.
+ */
 @Entity
 @Getter
 @Setter

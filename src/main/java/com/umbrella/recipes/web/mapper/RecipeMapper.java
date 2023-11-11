@@ -6,6 +6,8 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     RecipeDTO toDTO(RecipeModel recipe);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

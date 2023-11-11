@@ -14,6 +14,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Represents a user entity with various attributes including username, password, and authority to be used with user
+ * authentication and authorization. Yes I know I don't have to add model to the end of the class name, but in this case
+ * I didn't know how it might affect the UserDetails interface.
+ */
 @Entity
 @NoArgsConstructor
 @Getter

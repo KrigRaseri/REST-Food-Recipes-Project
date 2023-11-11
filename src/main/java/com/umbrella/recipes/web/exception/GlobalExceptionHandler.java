@@ -1,6 +1,7 @@
 package com.umbrella.recipes.web.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,12 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(UnauthorizedUserException.class)
     public String handleUnauthorizedUserException(UnauthorizedUserException e) {
+        return e.getMessage();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BadCredentialsException.class)
+    public String handleBadCredentialsException(BadCredentialsException e) {
         return e.getMessage();
     }
 }

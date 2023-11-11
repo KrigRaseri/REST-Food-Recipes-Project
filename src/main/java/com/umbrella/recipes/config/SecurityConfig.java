@@ -21,6 +21,9 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+/**
+ * Configuration class for Spring Security that provides user authentication and authorization.
+ */
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
@@ -29,6 +32,13 @@ public class SecurityConfig implements UserDetailsService {
 
     private final UserRepository repository;
 
+    /**
+     * Loads a user by the given username. This method is used for user authentication.
+     *
+     * @param username The username of the user to be loaded.
+     * @return The UserDetails for the user.
+     * @throws UsernameNotFoundException if the user with the specified username is not found.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("Searching for user with username: {}", username);
@@ -37,8 +47,14 @@ public class SecurityConfig implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-
-
+    /**
+     * Configures the security filter chain for HTTP requests.
+     *
+     * @param http         The HttpSecurity object for configuring security settings.
+     * @param introspector The HandlerMappingIntrospector for request matching.
+     * @return The SecurityFilterChain that defines the security rules.
+     * @throws Exception if there is an error during configuration.
+     */
     @Bean
     public SecurityFilterChain securityChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder mvcB = new MvcRequestMatcher.Builder(introspector);
@@ -54,11 +70,15 @@ public class SecurityConfig implements UserDetailsService {
                         .requestMatchers(mvcB.pattern(HttpMethod.POST, "/api/register")).permitAll()
                         .anyRequest().denyAll()
                 )
-                //.formLogin(Customizer.withDefaults())
                 .userDetailsService(this);
         return http.build();
     }
 
+    /**
+     * Provides a PasswordEncoder bean for encoding and verifying passwords.
+     *
+     * @return A BCryptPasswordEncoder instance for password encoding.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
