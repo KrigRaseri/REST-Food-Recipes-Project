@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +56,7 @@ public class RecipeController {
             log.error("Both category and name parameters were provided.");
             return ResponseEntity.badRequest().build();
         }
+
         if (category != null) {
             log.debug("Searching for recipe with category: {}, from the controller.", category);
             List<RecipeDTO> recipes = recipeService.searchRecipeByCategory(category);
@@ -86,7 +86,7 @@ public class RecipeController {
         }
         log.info("User {} is creating a new recipe", details.getUsername());
         Long id = recipeService.saveRecipe(details.getUsername(), recipe);
-        return ResponseEntity.status(HttpStatus.OK).body(Map.of("Recipe created for id", id));
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("Recipe created for id", id));
     }
 
     /**
