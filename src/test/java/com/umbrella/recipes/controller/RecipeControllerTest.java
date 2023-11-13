@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -39,7 +40,11 @@ public class RecipeControllerTest {
     private static final String TEST_USERNAME = "test@test.com";
     private static final String TEST_PASSWORD = "test1234";
     private static final String USER_ROLE = "USER_ROLE";
-    private final UserDetails userDetails = new UserModel(TEST_USERNAME, TEST_PASSWORD, USER_ROLE);
+    private final UserDetails userDetails = User.builder()
+            .username(TEST_USERNAME)
+            .password(TEST_PASSWORD)
+            .roles(USER_ROLE)
+            .build();
 
 
     @InjectMocks
