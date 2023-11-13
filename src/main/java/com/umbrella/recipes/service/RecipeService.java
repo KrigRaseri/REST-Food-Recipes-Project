@@ -44,7 +44,7 @@ public class RecipeService {
             return new RecipeNotFoundException("Recipe not found for ID: " + id);
         });
 
-        log.info("Recipe found for ID: {}, now mapping to DTO and returning.", id);
+        log.debug("Recipe found for ID: {}, now mapping to DTO and returning.", id);
         return Optional.of(recipeMapper.toDTO(recipeModel));
     }
 
@@ -154,8 +154,8 @@ public class RecipeService {
         Optional<List<RecipeModel>> recipeModels = repositorySupplier.get();
 
         if (recipeModels.isEmpty() || recipeModels.get().isEmpty()) {
-            log.debug("No recipes found for {}: {}", searchTerm, searchTerm);
-            return List.of();
+            log.error("No recipes found for {}: {}", searchTerm, searchTerm);
+            throw new RecipeNotFoundException("No recipes found for " + searchTerm + ": " + searchTerm);
         }
 
         log.info("Recipes found for {}: {}", searchTerm, searchTerm);
