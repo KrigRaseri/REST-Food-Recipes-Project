@@ -37,3 +37,4 @@ out/
 .vscode/
 src/main/java/com/umbrella/recipes/model/Directions.java
 src/main/java/com/umbrella/recipes/model/Ingredient.java
+/SECRET-NO-GITTY
