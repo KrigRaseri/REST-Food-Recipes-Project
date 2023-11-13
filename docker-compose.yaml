@@ -1,0 +1,53 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:16
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "15432:15432"
+    volumes:
+      - recipe-postgres-data:/var/lib/postgresql/data
+    networks:
+      - recipe-network
+    container_name: postgres-container
+
+  recipes-project:
+    image: recipesproject:latest
+    container_name: recipe-project-container
+    ports:
+      - "9090:9090"
+    depends_on:
+      - postgres
+    networks:
+      - recipe-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/recipedb
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    env_file:
+      - .env.app
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8185:8185"
+    networks:
+      - recipe-network
+    depends_on:
+      - postgres
+    container_name: adminer-container
+
+volumes:
+  recipe-postgres-data:
+
+
+networks:
+  recipe-network:
+    driver: bridge
+
