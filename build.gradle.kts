@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.umbrella"
-version = "1.0.0"
+version = "1.2.3"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -32,8 +32,8 @@ dependencies {
 
     // Database
     implementation("com.h2database:h2:2.2.224")
-    implementation("com.mysql:mysql-connector-j:8.2.0")
     runtimeOnly("com.h2database:h2")
+    implementation("org.postgresql:postgresql:42.6.0")
 
     // Utility tools
     compileOnly("org.projectlombok:lombok")
@@ -44,6 +44,9 @@ dependencies {
     // Test
     testImplementation("org.springframework.security:spring-security-test:6.1.5")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql:1.19.1")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers:3.1.5")
 }
 
 tasks.withType<Test> {
