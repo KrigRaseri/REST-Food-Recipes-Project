@@ -17,6 +17,27 @@ Get to know the backend development. Use Spring Boot to complete this project. L
 Spring Boot Security, H2 database, LocalDateTime, Project Lombok, and other concepts useful for the backend. This repo
 will also add in other changes for practice that are not part of the project requirements.
 
+## How to Run
+
+- Clone the repo.
+- 1. Run the docker-compose.yml file. This will create a project image, a Postgres DB, and Adminer. 
+Feel free to change to different containers. **Note:** It uses the .env and the .env.app files for environment variables.
+In the repo I will leave them blank, so you can fill them in and also so Github doesn't yell at me. The default demo varibales
+are below.
+
+- 2. Create or use your own Postgres DB. The default demo variables are below. Then just run the project like normal.
+
+A generated-requests.http file is included in the repo for testing the endpoints in IntelliJ. Or to at least see the endpoints.
+
+### Default demo variables:
+```
+POSTGRES_USER=testuser
+POSTGRES_PASSWORD=testpassword
+POSTGRES_DB=recipedb
+
+SPRING_DATASOURCE_USERNAME=testuser
+SPRING_DATASOURCE_PASSWORD=testpassword
+```
 
 ## Project Progress Journal
 
@@ -124,14 +145,17 @@ a bunch of JPA and security stuff to learn, but I think I got the basics down.
 Since there won't be any major upkeep or changes I will just make a changelog here, instead of a separate file.
 Also, the completed project will be considered version 1.0.0.
 
-## [Unreleased]
 
-## [1.1.1]
+## [1.2.3]
 
-### Added Java doc comments to all classes.
+### Minor Changes
+- Added Dockerfile and docker-compose.yml for easy deployment.
+- Added integration tests for RecipeController with test containers and Test Rest Template.
 
-### Changed a few things in RecipeController and GlobalExceptionHandler.
-
+### Changed
+- Changed a few things in RecipeController and GlobalExceptionHandler.
+- Changed exception being thrown in updateRecipe to RecipeNotFoundException.
+- Added Java doc comments to all classes.
 
 ## [1.1.0]
 
