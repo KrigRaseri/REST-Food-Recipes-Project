@@ -1,14 +1,18 @@
 ###
-GET http://localhost:8080/api/recipe/1
+GET http://localhost:9090/api/recipe/1
+Authorization: Basic dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA==
 
 ###
-GET http://localhost:8080/api/recipe/search?category=test+category
+GET http://localhost:9090/api/recipe/search?category=test+category
+Authorization: Basic dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA==
 
 ###
-GET http://localhost:8080/api/recipe/search?name=Test
+GET http://localhost:9090/api/recipe/search?name=Test
+Authorization: Basic dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA==
 
 ###
-POST http://localhost:8080/api/recipe/new
+POST http://localhost:9090/api/recipe/new
+Authorization: Basic dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA==
 Content-Type: application/json
 
 {
@@ -20,6 +24,44 @@ Content-Type: application/json
   "directions": ["Step 1", "Step 2", "Step 3"]
 }
 
+###
+PUT http://localhost:9090/api/recipe/202
+Authorization: Basic dGVzdDJAdGVzdC5jb206MnRlc3QxMjM0
+Content-Type: application/json
+
+{
+  "name": "teeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "description": "Test Description",
+  "category": "Test",
+  "date": "2020-01-02T12:11:25.034734",
+  "ingredients": ["Step 1"],
+  "directions": ["Step 1", "Step 2", "Step 3"]
+}
+
 
 ###
-DELETE http://localhost:8080/api/recipe/1
+DELETE http://localhost:9090/api/recipe/1
+Authorization: Basic dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA==
+
+
+###
+POST http://localhost:9090/api/register
+Content-Type: application/json
+
+{
+"email": "test@test.com",
+"password": "test1234"
+}
+
+###
+POST http://localhost:9090/api/register
+Content-Type: application/json
+
+{
+  "email": "test2@test.com",
+  "password": "2test1234"
+}
+###
+//dGVzdEB0ZXN0LmNvbTp0ZXN0MTIzNA== auth code for test1
+//dGVzdDJAdGVzdC5jb206MnRlc3QxMjM0 auth code for test2
+
