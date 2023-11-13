@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Represents a recipe entity with various attributes including name, description, category,
  * creation date, ingredients, directions, and the user who created the recipe. Yes I know I don't have to add model
- * to the end of the class name but it just kinda happened.
+ * to the end of the class name, but it just kinda happened.
  */
 @Entity
 @Getter
@@ -52,7 +52,7 @@ public class RecipeModel {
     @ElementCollection
     private List<String> directions;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "username")
     private UserModel userModel;
 }
