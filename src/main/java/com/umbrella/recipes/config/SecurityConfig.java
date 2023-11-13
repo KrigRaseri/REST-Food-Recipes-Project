@@ -3,7 +3,6 @@ package com.umbrella.recipes.config;
 import com.umbrella.recipes.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 /**
@@ -61,7 +59,6 @@ public class SecurityConfig implements UserDetailsService {
         http.httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable).headers(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                         .requestMatchers(mvcB.pattern(HttpMethod.POST, "/api/recipe/new")).authenticated()
                         .requestMatchers(mvcB.pattern(HttpMethod.PUT, "/api/recipe/{id}")).authenticated()
                         .requestMatchers(mvcB.pattern(HttpMethod.DELETE, "/api/recipe/{id}")).authenticated()
